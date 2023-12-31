@@ -4,7 +4,11 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "serve":  "concurrently -n \"LARAVEL,__VUE__\" -c \"bgRed.bold,bgMagenta.bold\" \"php \"./artisan\" serve\" \"npm run dev\""
+        "serve": "concurrently -n \"LARAVEL,__VUE__\" -c \"bgRed.bold,bgMagenta.bold\" \"php \"./artisan\" serve\" \"npm run dev\"",
+        "typegen": "php ./artisan model:typer --plurals > resources/js/types/index.d.ts"
+    },
+    "prettier": {
+        "tabWidth": 2
     },
     "devDependencies": {
         "@inertiajs/vue3": "^1.0.0",
@@ -16,6 +20,7 @@
         "@vitejs/plugin-vue": "^4.5.0",
         "autoprefixer": "^10.4.7",
         "axios": "^1.6.1",
+        "concurrently": "^8.2.2",
         "laravel-vite-plugin": "^1.0.0",
         "postcss": "^8.4.14",
         "tailwindcss": "^3.1.0",
@@ -23,5 +28,9 @@
         "vite": "^5.0.0",
         "vue": "^3.2.31",
         "ziggy-js": "^1.8.1"
+    },
+    "dependencies": {
+        "date-fns": "^3.0.6",
+        "lucide-vue-next": "^0.303.0"
     }
 }

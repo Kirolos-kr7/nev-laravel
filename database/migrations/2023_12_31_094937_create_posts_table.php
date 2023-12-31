@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('title');
             $table->string('slug');
             $table->longText('content');
+            $table->longText('author_id');
             $table->tinyText('description');
             $table->string('image')->nullable();
             $table->integer('likes_count')->default(0);

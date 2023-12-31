@@ -1,7 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostsController;
+use App\Models\Post;
+use App\Models\Tag;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +17,15 @@ use Inertia\Inertia;
 |
 */
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/', function () {
-        return Inertia::render('Home');
-    })->name('home');
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified',
+// ])->group(function () {
+// });
+
+
+Route::controller(PostsController::class)->group(function () {
+    Route::get('/', 'index')->name('home');
+    Route::get('/t/{tag}', 'with_tag')->name('tags');
 });
