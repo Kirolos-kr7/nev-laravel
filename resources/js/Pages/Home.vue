@@ -7,7 +7,7 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import { Posts as Ptype } from "@/types";
 import { Link, usePage } from "@inertiajs/vue3";
 
-const page = usePage<{ posts: Ptype }>();
+const page = usePage<{ posts: Ptype; tag: string }>();
 </script>
 
 <template>
@@ -18,29 +18,27 @@ const page = usePage<{ posts: Ptype }>();
       <div>
         <div class="flex items-center justify-between pb-3 px-3 md:px-0">
           <transition appear name="fadeIn">
-            <h2 class="text-3xl font-bold">Feed</h2>
+            <h2 class="text-3xl font-bold">
+              {{ page.props.tag ? "#" + page.props.tag : "Feed" }}
+            </h2>
           </transition>
           <div class="flex gap-1">
-            <transition-group appear name="fadeIn">
-              <Link href="/?sort=newest">
-                <SecondaryButton
-                  key="1"
-                  class="btn-filter active transition"
-                  id="filterByDate"
-                >
-                  Newest
-                </SecondaryButton>
-              </Link>
-              <Link href="/?sort=liked">
-                <SecondaryButton
-                  key="2"
-                  class="btn-filter whitespace-nowrap transition"
-                  id="filterByLikes"
-                >
-                  Most Liked
-                </SecondaryButton>
-              </Link>
-            </transition-group>
+            <Link href="./?sort=newest">
+              <SecondaryButton
+                class="btn-filter active transition"
+                id="filterByDate"
+              >
+                Newest
+              </SecondaryButton>
+            </Link>
+            <Link href="./?sort=liked">
+              <SecondaryButton
+                class="btn-filter whitespace-nowrap transition"
+                id="filterByLikes"
+              >
+                Most Liked
+              </SecondaryButton>
+            </Link>
           </div>
         </div>
 

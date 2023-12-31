@@ -41,6 +41,19 @@ class Post extends Model
     {
         return $this->belongsToMany(Tag::class, 'post_tag', 'post_id', 'tag_id');
     }
-}
 
-// package 
+    public function scopeFilter($query, $filter = [])
+    {
+        if (!isset($filter['sort']))
+            return $query->inRandomOrder();
+
+
+        if ($filter['sort'] == 'newest')
+            return $query->latest();
+
+
+        if ($filter['sort'] == 'liked')
+            return $query->orderBy('likes_count', 'DESC');
+
+    }
+}

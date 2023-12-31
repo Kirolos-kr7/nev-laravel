@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
             ['key' => 'laravel'],
             ['key' => 'angular'],
             ['key' => 'node'],
-            ['key' => 'ui/ux'],
+            ['key' => 'ui-ux'],
         ]);
 
         $post = Post::create([
@@ -45,8 +45,26 @@ class DatabaseSeeder extends Seeder
             'image' => 'https://firebasestorage.googleapis.com/v0/b/bloxy-x.appspot.com/o/posts%2Ff891ecab-61d8-4de5-bc11-b3dd5168a8da?alt=media&token=3644bc39-d7ab-4bd0-b45a-fe3668abb7ee',
             'description' => 'How to Change Your Life: 19 Ways to Improve Your Life Right Now',
             'author_id' => $user->id,
+            'likes_count' => '6'
         ]);
 
         $post->tags()->attach([1, 2]);
+
+        $post = Post::create([
+            'title' => 'Happy New Year 🥳',
+            'slug' => 'happy-new-year',
+            'content' => "Hey friends 👋
+            I wanted to wish everyone a happy new year.
+            I hope that all your hard work will amount to something really cool this year!
+            On my end, I will continue to write out quality content focused on open source, for you. 🫶
+            Enjoy your New Year's Eve, and see you next year!
+            Your Dev.to buddy, Bap 💚",
+            'image' => 'https://res.cloudinary.com/practicaldev/image/fetch/s--ZuZi6F8u--/c_imagga_scale,f_auto,fl_progressive,h_420,q_66,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/u9hblwu1rfzk536klhzb.gif',
+            'description' => '',
+            'author_id' => 1,
+            'likes_count' => '3'
+        ]);
+
+        $post->tags()->attach([2, 5]);
     }
 }

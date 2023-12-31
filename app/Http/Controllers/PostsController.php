@@ -15,7 +15,7 @@ class PostsController extends Controller
     public function index()
     {
         $tags = Tag::all();
-        $posts = Post::with(['author', 'tags'])->get();
+        $posts = Post::with(['author', 'tags'])->filter(request(['sort']))->get();
 
         return Inertia::render('Home', ['tags' => $tags, 'posts' => $posts]);
     }
@@ -28,9 +28,9 @@ class PostsController extends Controller
         $tags = Tag::all();
         $posts = Post::whereHas('tags', function ($query) use ($tag) {
             $query->where('key', $tag);
-        })->with('author', 'tags')->get();
+        })->with('author', 'tags')->filter(request(['sort']))->get();
 
-        return Inertia::render('Home', ['tags' => $tags, 'posts' => $posts]);
+        return Inertia::render('Home', ['tag' => $tag, 'tags' => $tags, 'posts' => $posts]);
     }
 
     /**
