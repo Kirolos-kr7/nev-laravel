@@ -27,6 +27,8 @@ const logout = () => {
       <main class="max-w-7xl mx-auto md:px-6 lg:px-8 py-4">
         <slot />
       </main>
+
+      <Footer />
     </div>
   </div>
 </template>
