@@ -15,12 +15,7 @@ defineProps({
   title: String,
 });
 
-const {
-  props: {
-    auth: { user },
-  },
-} = usePage<{ auth: { user: User } }>();
-console.log(user);
+const page = usePage<{ auth: { user: User | null } }>();
 
 const showingNavigationDropdown = ref(false);
 
@@ -57,14 +52,14 @@ const logout = () => {
         <div class="hidden sm:flex sm:items-center sm:ms-6">
           <!-- Settings Dropdown -->
           <div class="ms-3 relative">
-            <Dropdown align="right" width="48" v-if="user">
+            <Dropdown align="right" width="48" v-if="page.props.auth.user">
               <template #trigger>
                 <span class="inline-flex rounded-md">
                   <button
                     type="button"
                     class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150"
                   >
-                    {{ user.name }}
+                    {{ page.props.auth.user.name }}
 
                     <svg
                       class="ms-2 -me-0.5 h-4 w-4"
@@ -141,14 +136,17 @@ const logout = () => {
       </div>
 
       <!-- Responsive Settings Options -->
-      <div class="pt-4 pb-1 border-t border-gray-200" v-if="user">
+      <div
+        class="pt-4 pb-1 border-t border-gray-200"
+        v-if="page.props.auth.user"
+      >
         <div class="flex items-center px-4">
           <div>
             <div class="font-medium text-base text-gray-800">
-              {{ user.name }}
+              {{ page.props.auth.user.name }}
             </div>
             <div class="font-medium text-sm text-gray-500">
-              {{ user.email }}
+              {{ page.props.auth.user.email }}
             </div>
           </div>
         </div>
