@@ -11,7 +11,7 @@ const page = usePage<{ tags: Tags }>();
   >
     <h2 class="text-xl font-bold hidden md:block px-1 pb-1">Tags</h2>
     <div
-      class="xscroll md:text-base flex items-center md:flex-wrap relative -mx-2 pt-2 pb-1 md:mx-0 text-xs font-medium"
+      class="xscroll md:text-base flex items-center md:flex-wrap relative -mx-2 py-2 md:mx-0 text-sm font-medium"
       v-if="page.props.tags"
     >
       <Tag v-for="{ key } in page.props.tags" :key="key" :tag="key" />

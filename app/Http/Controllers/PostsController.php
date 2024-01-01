@@ -14,10 +14,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $tags = Tag::all();
         $posts = Post::with(['author', 'tags'])->filter(request(['sort']))->get();
-
-        return Inertia::render('Home', ['tags' => $tags, 'posts' => $posts]);
+        return Inertia::render('Home', ['posts' => $posts]);
     }
 
     /**
@@ -25,12 +23,11 @@ class PostsController extends Controller
      */
     public function with_tag($tag)
     {
-        $tags = Tag::all();
         $posts = Post::whereHas('tags', function ($query) use ($tag) {
             $query->where('key', $tag);
         })->with('author', 'tags')->filter(request(['sort']))->get();
 
-        return Inertia::render('Home', ['tag' => $tag, 'tags' => $tags, 'posts' => $posts]);
+        return Inertia::render('Home', ['tag' => $tag, 'posts' => $posts]);
     }
 
     /**
@@ -52,9 +49,10 @@ class PostsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show($slug)
     {
-        //
+        $post = Post::with(['author', 'tags'])->where('slug', $slug)->first();
+        return Inertia::render('PostView', ['post' => $post]);
     }
 
     /**

@@ -9,7 +9,7 @@ defineProps<{
 <template>
   <Link
     :href="`/t/${tag}`"
-    class="rounded-md px-1.5 py-0.5 text-gray-400 no-underline transition-all hover:bg-gray-100"
+    class="rounded-md px-1.5 py-0.5 text-gray-400 no-underline transition-all hover:bg-gray-100 whitespace-nowrap"
   >
     <div class="key">{{ `#` + tag }}</div>
   </Link>
