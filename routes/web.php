@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\PostsController;
 use App\Models\Post;
 use App\Models\Tag;
@@ -28,4 +29,5 @@ use Illuminate\Support\Facades\Route;
 Route::controller(PostsController::class)->group(function () {
     Route::get('/', 'index')->name('home');
     Route::get('/t/{tag}', 'with_tag')->name('tags');
+    Route::get('/p/{post}', 'show')->name('post');
 });

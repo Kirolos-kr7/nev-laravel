@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Comment;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\User;
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('k123456'),
             'location' => 'egypt',
             'bio' => '',
+            'profile_photo_path' => 'https://lh3.googleusercontent.com/a/ACg8ocJej9WHFd_L5HLNApYygticpv8zqm8OwTYbqvW8Ct7fNQ=s360-c-no'
         ]);
 
         Tag::insert([
@@ -66,5 +68,20 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $post->tags()->attach([2, 5]);
+
+        Comment::insert([
+            [
+                'user_id' => 1,
+                'post_id' => 1,
+                'content' => "First Comment",
+                'likes_count' => 3,
+            ],
+            [
+                'user_id' => 1,
+                'post_id' => 1,
+                'content' => "Second Comment",
+                'likes_count' => 1,
+            ]
+        ]);
     }
 }

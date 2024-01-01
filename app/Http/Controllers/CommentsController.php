@@ -12,7 +12,7 @@ class CommentsController extends Controller
      */
     public function index()
     {
-        //
+        return Comment::with('user')->where('user_id', request()->author_id)->latest()->get();
     }
 
     /**

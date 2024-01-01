@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->integer('user_id');
             $table->integer('post_id');
             $table->mediumText('content');
+            $table->integer('likes_count')->default(0);
         });
     }
 
